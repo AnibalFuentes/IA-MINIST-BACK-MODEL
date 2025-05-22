@@ -200,13 +200,13 @@ def internal_error(error):
     return jsonify({'error': 'Error interno del servidor'}), 500
 
 if __name__ == '__main__':
-    # Inicializar predictor manualmente para desarrollo
+    # Only for development
     try:
         predictor = DigitPredictor()
-        logger.info("Predictor inicializado en modo desarrollo")
+        logger.info("Predictor initialized in development mode")
     except Exception as e:
-        logger.error(f"Error inicializando predictor: {e}")
+        logger.error(f"Error initializing predictor: {e}")
         exit(1)
     
-    # Ejecutar servidor
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Run server - only for development
+    app.run(host='0.0.0.0', port=5000, debug=False)  # debug=False for production
